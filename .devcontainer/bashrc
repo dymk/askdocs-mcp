@@ -1,0 +1,35 @@
+# Custom bashrc for devcontainer
+
+# Source the default bashrc if it exists
+if [ -f /etc/bash.bashrc ]; then
+    . /etc/bash.bashrc
+fi
+
+# Aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias python=python3
+alias pip=pip3
+
+# Python development aliases
+alias fmt='ruff format .'
+alias lint='ruff check .'
+alias fix='ruff check --fix .'
+
+# Custom prompt
+PS1='\[\033[01;32m\]\u@devcontainer\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+
+# Enable color support
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+fi
+
+echo "🚀 AskDocs MCP Development Container"
+echo "Run 'fmt' to format code, 'lint' to check, 'fix' to auto-fix issues"
+
+if [ -f "/workspaces/askdocs-mcp/.venv/bin/activate" ]; then
+    . "/workspaces/askdocs-mcp/.venv/bin/activate"
+fi
+
+

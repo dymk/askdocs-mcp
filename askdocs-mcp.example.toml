@@ -1,0 +1,25 @@
+# AskDocs MCP Configuration File
+#
+# This file defines the documentation sources that will be indexed and searchable.
+# Each [[doc]] entry represents one PDF document.
+
+# Optional: Configure Ollama models (defaults shown below)
+# Note: Server URL is set via ASKDOCS_OLLAMA_URL environment variable (default: http://localhost:11434)
+embedding_model = "snowflake-arctic-embed:latest"
+llm_model = "qwen3:14b"
+
+# Documentation Sources
+# Fields:
+#   name        - Unique identifier for this documentation source (used in queries)
+#   description - Human-readable description of the document
+#   path        - Path to the PDF file (relative to this config file or absolute)
+
+[[doc]]
+name = "my_manual"
+description = "My Product User Manual"
+path = "pdf/manual.pdf"
+
+[[doc]]
+name = "product_spec"
+description = "Product Technical Specification"
+path = "pdf/specification.pdf"
