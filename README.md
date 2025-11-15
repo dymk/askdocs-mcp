@@ -11,7 +11,7 @@ A Model Context Protocol (MCP) server that provides RAG-powered semantic search 
 
 ## Quick Start
 
-**1. Create `askdocs-mcp.toml` in your docs directory:**
+**1. Create `askdocs-mcp.toml` in your project's docs directory:**
 
 ```toml
 [[doc]]
@@ -51,6 +51,39 @@ llm_model = "qwen3:14b"
 name = "unique_identifier"
 description = "Human description"
 path = "pdf/document.pdf"
+```
+
+## Using the MCP Server:
+
+### Cursor (`~/.cursor/mcp.json` or `<project-root>/.cursor/mcp.json`)
+
+```json
+{
+    "mcpServers": {
+        "askdocs-mcp": {
+            "command": "docker",
+            "args": [
+                "run", "-i", "--rm",
+                "--network=host",
+                "--volume=${workspaceFolder}/docs:/docs",
+                "ghcr.io/dymk/askdocs-mcp:latest"
+            ]
+        }
+    }
+}
+```
+
+### Codex (`~/.codex/config.toml`)
+
+```toml
+[mcp_servers.askdocs-mcp]
+command = "docker"
+args = [
+    "run", "-i", "--rm",
+    "--network=host",
+    "--volume=/your/workspace/folder/docs:/docs",
+    "ghcr.io/dymk/askdocs-mcp:latest"
+]
 ```
 
 **Environment variable:**
